@@ -1,7 +1,13 @@
-module Nano where
+module Nano
+  ( create
+  , createDefault
+  , createM
+  )
+  where
 
 import Prelude
 
+import Data.List (List(..), (:))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (length)
 import Data.String.Utils (charAt)
@@ -12,9 +18,11 @@ import Effect.Random (randomInt)
 -- Get alphabet. Either default or specified by user
 --let alphabet = Alphabet
 -- Get random number between 0 and size of (string - 1) input to the function
+alphabet :: String
 alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-"
+
 random_index :: String -> Effect Int
-random_index s = length s # randomInt 0
+random_index s = randomInt 0 (length s-1)
 -- get the element at the specified index.
 -- this function is from Data.Char.Utils
 get_elem_at :: String -> Int -> Maybe String
@@ -27,25 +35,35 @@ get_random_elem_from_string s = do
   el <- pure $ get_elem_at s i
   pure el
 
--- Do it recursively until size of NanoID is equal to the desired size
--- create :: String
--- create = create 21
+-- create :: Alphabet -> Size -> Effect (Maybe String)
+-- create (AlphabetM ms) (SizeM mi) = create s i
+--                 where s = AlphabetS (fromMaybe alphabet ms)
+--                       i = SizeI (fromMaybe 21 mi)
+-- create (AlphabetM ms) (SizeI i) = create s (SizeI i)
+--                 where s = AlphabetS (fromMaybe alphabet ms)
+-- create (AlphabetS s) (SizeM mi) = create (AlphabetS s) i
+--                 where i = SizeI (fromMaybe 21 mi)
+-- create (AlphabetS s) (SizeI i) | i > 0  = do
+--                 mes <- get_random_elem_from_string s
+--                 xs <- create (AlphabetS s) (SizeI (i-1))
+--                 pure (mes <> xs)
+--             | otherwise = pure Nothing
 
--- create :: Int -> String
--- create i = (create (Just alphabet) i) <> create (i-1)
+-- createDefault :: Effect (Maybe String)
+-- createDefault = create (AlphabetM Nothing) (SizeM Nothing)
 
--- create :: String -> Int -> String
--- create s i | i <= 0 = ""
---            | i > 0  = (get_random_elem_from_string s) <> create s (i-1)
-
-create :: Maybe String -> Int -> Effect (Maybe String)
-create ms i | i > 0  = do 
-                let s = fromMaybe alphabet ms
+-- create generates random strings that comply with the NanoID algorithm.
+-- Alternatively you can specify your own alphabet to generate the string from.
+createM :: Maybe String -> Maybe Int -> Effect (Maybe String)
+createM ms mi = create s i
+                where s = fromMaybe alphabet ms
+                      i = fromMaybe 21 mi
+create :: String -> Int -> Effect (Maybe String)
+create s i | i > 0  = do
                 mes <- get_random_elem_from_string s
-                xs <- create ms (i-1)
+                xs <- create s (i-1)
                 pure (mes <> xs)
             | otherwise = pure Nothing
--- create :: Int -> String
--- create i = if i > 0
---            then (get_random_elem_from_string i) <> create (i-1)
---            else ""
+createDefault :: Effect (Maybe String)
+createDefault = createM Nothing Nothing
+
