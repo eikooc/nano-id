@@ -19,7 +19,6 @@ to generate this file without the comments in this block.
   , "maybe"
   , "prelude"
   , "psci-support"
-  , "quickcheck"
   , "random"
   , "spec"
   , "strings"
@@ -27,4 +26,6 @@ to generate this file without the comments in this block.
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
+, license = "MIT"
+, repository = "https://github.com/eikooc/nano-id"
 }
