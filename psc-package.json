@@ -2,17 +2,16 @@
   "name": "nano-id",
   "set": "psc-0.14.5",
   "source": "https://github.com/purescript/package-sets.git",
-  "depends": [ "prelude"
-  , "aff"
-  , "console"
-  , "effect"
-  , "lists"
-  , "maybe"
-  , "prelude"
-  , "psci-support"
-  , "random"
-  , "spec"
-  , "strings"
-  , "stringutils"
+  "depends": [
+    "prelude",
+    "aff",
+    "effect",
+    "lists",
+    "maybe",
+    "prelude",
+    "random",
+    "spec",
+    "strings",
+    "stringutils"
   ]
 }

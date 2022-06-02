@@ -2,15 +2,14 @@ module Test.Main where
 
 import Prelude
 
-import Data.Maybe (Maybe(..), fromMaybe)
+import Data.Maybe (fromMaybe)
 import Data.String (length)
 import Data.String.Utils (repeat)
 import Effect (Effect)
-import Effect (Effect)
-import Effect.Aff (launchAff_, delay)
+import Effect.Aff (launchAff_)
 import Effect.Class (liftEffect)
 import Nano (create, createDefault)
-import Test.Spec (pending, describe, it)
+import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
 import Test.Spec.Reporter.Console (consoleReporter)
 import Test.Spec.Runner (runSpec)
@@ -34,4 +33,3 @@ main = launchAff_ $ runSpec [consoleReporter] do
     it "should produce a default nanoid when no arguments specified" do
       nanoid <- liftEffect createDefault
       length (fromMaybe "" nanoid) `shouldEqual` 21
-
