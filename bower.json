@@ -24,6 +24,6 @@
         "purescript-random": "^v5.0.0",
         "purescript-spec": "^v5.0.1",
         "purescript-strings": "^v5.0.0",
-        "purescript-stringutils": "^v0.0.11"
+        "purescript-stringutils": "^v0.0.12"
     }
 }
