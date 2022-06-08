@@ -7,7 +7,6 @@ module Nano
 
 import Prelude
 
-import Data.List (List(..), (:))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (length)
 import Data.String.Utils (charAt)
@@ -66,4 +65,3 @@ create s i | i > 0  = do
             | otherwise = pure Nothing
 createDefault :: Effect (Maybe String)
 createDefault = createM Nothing Nothing
-

@@ -23,7 +23,7 @@ to generate this file without the comments in this block.
   , "stringutils"
   ]
 , packages = ./packages.dhall
-, sources = [ "src/**/*.purs", "test/**/*.purs" ]
+, sources = [ "src/**/*.purs" ]
 , license = "MIT"
 , repository = "https://github.com/eikooc/nano-id"
 }
