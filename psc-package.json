@@ -3,7 +3,6 @@
   "set": "psc-0.15.2-20220531",
   "source": "https://github.com/purescript/package-sets.git",
   "depends": [
-    "prelude",
     "aff",
     "effect",
     "lists",
