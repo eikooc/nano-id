@@ -1,0 +1,27 @@
+{
+    "name": "purescript-nano-id",
+    "license": [
+        "MIT"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/eikooc/nano-id"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "output"
+    ],
+    "dependencies": {
+        "purescript-aff": "^v7.0.0",
+        "purescript-effect": "^v4.0.0",
+        "purescript-lists": "^v7.0.0",
+        "purescript-maybe": "^v6.0.0",
+        "purescript-prelude": "^v6.0.0",
+        "purescript-random": "^v6.0.0",
+        "purescript-spec": "^v7.0.0",
+        "purescript-strings": "^v6.0.0",
+        "purescript-stringutils": "^v0.0.12"
+    }
+}
